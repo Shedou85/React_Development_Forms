@@ -15,7 +15,7 @@ const FormHomeWork = () => {
 
     }
   );
-  
+  console.log(formData);
   function sendLoginData(event) {
     setFormData(prev => {
       return {
@@ -25,93 +25,81 @@ const FormHomeWork = () => {
     }
     )
     if (formData.password !== formData.confirmPassword) {
-      alert('Password and Confirm Password are not the same');
+      console.log('Password and Confirm Password are not the same');
     }
   }
+  function getLoginData(e) {
+    setFormData(prev => {
+      return {
+        ...prev,
+        [e.target.name] : e.target.value
+      }
+    }
+  )} 
+
+
 
   
 
 
 
   return (
-    <div>
-      <div className="sign-up-modal">
-          <div id="close-modal-button">
-          </div>
+    <div className='container'>
+      <div className='wrapper'>
+        <div className='title'>
+           <h1>Login Form</h1>
+        </div>
+        <div className='form-container'>
+          <input type='text' 
+          className='login-input'
+          placeholder='First Name' 
+          name='firstName' 
+          value={formData.firstName} 
+          onChange={getLoginData} />
 
-          <div className="logo-container">
-              <svg className="logo" width="94.4px" height="56px">
-                  <g>
-                      <polygon points="49.3,56 49.3,0 0,28 	" />
-                      <path d="M53.7,3.6v46.3l40.7-23.2L53.7,3.6z M57.7,10.6l28.4,16.2L57.7,42.9V10.6z" />
-                  </g>
-              </svg>
-          </div>
+          <input type='text' 
+          className='login-input'
+          placeholder='Last Name' 
+          name='lastName' 
+          value={formData.lastName} 
+          onChange={getLoginData} />
 
-          <form className="details">
-              <div className="input-container">
-                  <input className="col-sm-12 firstName-input with-placeholder" 
-                    name="firstName"
-                    id="firstName" 
-                    type="text" 
-                    placeholder="First Name" 
-                    />
-              </div>
-              <div className="input-container">
-                  <input className="col-sm-5 lastName-input with-placeholder" 
-                    name="lastName"
-                    id="lastName" 
-                    type="text" 
-                    placeholder="Last Name" 
-                    />
-              </div>
-              <div className="input-container">
-                  <input className="col-sm-5 col-sm-push-2 phone-input with-placeholder" 
-                    name="phone"
-                    id="phone" 
-                    type="text" 
-                    placeholder="Phone" />
-              </div>
-              <div className="input-container">
-                  <input className="col-sm-5 email-input with-placeholder" 
-                    name="email"
-                    id="email" 
-                    type="text" 
-                    placeholder="Email" 
-                    />
-              </div>
-              <div className="input-container">
-                  <input className="col-sm-5 password-input with-placeholder" 
-                    name="password"
-                    id="password" 
-                    type="text" 
-                    placeholder="Password" 
-                    />
-              </div>
-              <div className="input-container">
-                  <input className="col-sm-5 confirmPassword-input with-placeholder" 
-                    name="confirmPassword"
-                    id="confirmPassword" 
-                    type="text" 
-                    placeholder="Confirm Password" 
-                    />
-              </div>
-              
+          <input type='text' 
+          className='login-input'
+          placeholder='Phone' 
+          name='phone' 
+          value={formData.phone} 
+          onChange={getLoginData} />
 
-              <div className="col-sm-12 form-checkbox">
-                  <label>
-                      <input type="checkbox" value="true" /> Keep me signed in</label>
-              </div>
+          <input type='text' 
+          className='login-input'
+          placeholder='Email' 
+          name='email' 
+          value={formData.email}
+          onChange={getLoginData}
+          />
 
-                <div id="sign-up-button" 
-                  className="col-sm-12 sign-up-modal"
-                  value="Sign Up" onClick={sendLoginData}>
-                    Sign Up
-                </div>
-              <p>Already have an account? <a href="#signIn">Sign in</a></p>
+          <input type='text' 
+          className='login-input'
+          placeholder='Password' 
+          name='password'
+          value={formData.password}
+          onChange={getLoginData}
+           />
 
-          </form>
-      </div>     
+          <input type='text' 
+          className='login-input'
+          placeholder='Confirm Password' 
+          name='confirmPassword' 
+          value={formData.confirmPassword}
+          onChange={getLoginData}
+           />
+        </div>
+        <div className='submit'>
+          <button className= 'submit-btn' onClick={sendLoginData}>Submit</button>
+
+        </div>
+      </div>
     </div>
   )
 }
