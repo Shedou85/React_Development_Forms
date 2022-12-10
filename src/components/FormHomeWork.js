@@ -25,14 +25,14 @@ const FormHomeWork = () => {
     }
     )
     if (formData.password !== formData.confirmPassword) {
-      console.log('Password and Confirm Password are not the same');
+      alert('Password and Confirm Password are not the same');
     }
   }
-  function getLoginData(e) {
+  function getLoginData(event) {
     setFormData(prev => {
       return {
         ...prev,
-        [e.target.name] : e.target.value
+        [event.target.name] : event.target.value
       }
     }
   )} 
@@ -79,7 +79,7 @@ const FormHomeWork = () => {
           onChange={getLoginData}
           />
 
-          <input type='text' 
+          <input type='password' 
           className='login-input'
           placeholder='Password' 
           name='password'
@@ -87,7 +87,7 @@ const FormHomeWork = () => {
           onChange={getLoginData}
            />
 
-          <input type='text' 
+          <input type='password' 
           className='login-input'
           placeholder='Confirm Password' 
           name='confirmPassword' 
@@ -96,8 +96,7 @@ const FormHomeWork = () => {
            />
         </div>
         <div className='submit'>
-          <button className= 'submit-btn' onClick={sendLoginData}>Submit</button>
-
+          <button className= 'submit-btn' type="submit"  onClick={sendLoginData}>Submit</button>
         </div>
       </div>
     </div>
