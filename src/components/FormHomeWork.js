@@ -4,7 +4,7 @@ import '../styles/Loginform.scss';
 const FormHomeWork = () => {
   
  
-  let [formData, setFormData] = useState(
+  let [inputValue, setInputValue] = useState(
     {
       firstName: '',
       lastName: '',
@@ -12,92 +12,88 @@ const FormHomeWork = () => {
       email: '',
       password: '',
       confirmPassword: '',
-
     }
   );
-  console.log(formData);
-  function sendLoginData(event) {
-    setFormData(prev => {
-      return {
-        ...prev,
-        [event.target.name] : event.target.value
-      }
+  function sendFormData(event) {
+    //chek if password and confirm password are the same
+    if (inputValue.password !== inputValue.confirmPassword) {
+      alert('Password and confirm password are not the same');
+      return;
+    } else {
+      console.log('Form is submitted');
     }
-    )
-    if (formData.password !== formData.confirmPassword) {
-      alert('Password and Confirm Password are not the same');
-    }
+    event.preventDefault();
   }
-  function getLoginData(event) {
-    setFormData(prev => {
+    function getLoginData(event) {
+    setInputValue(prev => {
       return {
         ...prev,
         [event.target.name] : event.target.value
       }
-    }
-  )} 
-
-
-
-  
-
-
-
+    } 
+  )
+    
+} 
+    console.log(inputValue);
   return (
     <div className='container'>
       <div className='wrapper'>
         <div className='title'>
            <h1>Login Form</h1>
         </div>
-        <div className='form-container'>
-          <input type='text' 
-          className='login-input'
-          placeholder='First Name' 
-          name='firstName' 
-          value={formData.firstName} 
-          onChange={getLoginData} />
+        <form onSubmit={sendFormData}>
+          <div className='form-container'>
+            <input type='text' 
+            className='login-input'
+            placeholder='First Name' 
+            name='firstName' 
+            value={inputValue.firstName} 
+            onChange={getLoginData} />
 
-          <input type='text' 
-          className='login-input'
-          placeholder='Last Name' 
-          name='lastName' 
-          value={formData.lastName} 
-          onChange={getLoginData} />
+            <input type='text' 
+            className='login-input'
+            placeholder='Last Name' 
+            name='lastName' 
+            value={inputValue.lastName} 
+            onChange={getLoginData} />
 
-          <input type='text' 
-          className='login-input'
-          placeholder='Phone' 
-          name='phone' 
-          value={formData.phone} 
-          onChange={getLoginData} />
+            <input type='text' 
+            className='login-input'
+            placeholder='Phone' 
+            name='phone' 
+            value={inputValue.phone} 
+            onChange={getLoginData} />
 
-          <input type='text' 
-          className='login-input'
-          placeholder='Email' 
-          name='email' 
-          value={formData.email}
-          onChange={getLoginData}
-          />
+            <input type='text' 
+            className='login-input'
+            placeholder='Email' 
+            name='email' 
+            value={inputValue.email}
+            onChange={getLoginData}
+            />
 
-          <input type='password' 
-          className='login-input'
-          placeholder='Password' 
-          name='password'
-          value={formData.password}
-          onChange={getLoginData}
-           />
+            <input type='password' 
+            className='login-input'
+            placeholder='Password' 
+            name='password'
+            value={inputValue.password}
+            onChange={getLoginData}
+            />
 
-          <input type='password' 
-          className='login-input'
-          placeholder='Confirm Password' 
-          name='confirmPassword' 
-          value={formData.confirmPassword}
-          onChange={getLoginData}
-           />
+            <input type='password' 
+            className='login-input'
+            placeholder='Confirm Password' 
+            name='confirmPassword'
+            value={inputValue.confirmPassword}
+            onChange={getLoginData}
+            />
+          </div>
+          <div className='submit'>
+          <button className='submit-btn'>Submit</button>
         </div>
-        <div className='submit'>
-          <button className= 'submit-btn' type="submit"  onClick={sendLoginData}>Submit</button>
-        </div>
+        </form>
+       
+        
       </div>
     </div>
   )
