@@ -15,7 +15,7 @@ const FormHomeWork = () => {
     }
   );
   function sendFormData(event) {
-    //chek if password and confirm password are the same
+    
     if (inputValue.password !== inputValue.confirmPassword) {
       alert('Password and confirm password are not the same');
       return;
